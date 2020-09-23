@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iOS bug</title>
+</head>
+<body style="display: flex; align-items: center; flex-direction: column">
+<video id="video" style="height: 200px;" controls playsinline preload="auto">
+    <source src="timer.mp4" type="video/mp4">
+</video>
+
+<br>
+<code>video.currentTime</code>
+<span id="time"></span>
+
+<br>
+<label for="number">Set time:</label>
+<input type="number" id="number" value="5">
+<button type="button" onclick="videoEl.currentTime = parseFloat(numberEl.value)">Set</button>
+
+<script>
+    const timeEl = document.querySelector('#time');
+    const videoEl = document.querySelector('#video');
+    const numberEl = document.querySelector('#number');
+
+    setInterval(() => {
+        timeEl.innerHTML = videoEl.currentTime;
+    }, 1);
+</script>
+
+<br>
+<div>
+    To reproduce the bug:
+    <ol>
+        <li>Click play and pause to load the video</li>
+        <li>Click "Set" to set the video time</li>
+        <li>Click play</li>
+    </ol>
+</div>
+
+<div>
+    <b>Expected behaviour:</b> `video.currentTime` starts from the time it was set (5s by default)
+</div>
+
+<br>
+<div>
+    <b>Current behaviour: <u>(iOS 14.0 with Safari, Chrome, Opera, Firefox)</u></b> `video.currentTime` starts slightly earlier (minus ~350ms)
+</div>
+</body>
+</html>
