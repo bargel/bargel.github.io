@@ -37,11 +37,21 @@
 
 <br>
 <div>
-    To reproduce the bug:
+    To reproduce the bug #1:
     <ol>
         <li>Click play and pause to load the video</li>
         <li>Click "Set" to set the video time</li>
+        <li>Click play, and click pause again in the no time</li>
+        <li>You see that video.currentTime is slightly smaller then time you have set</li>
+    </ol>
+
+    <br><br>
+    To reproduce the bug #2:
+    <ol>
+        <li>Refresh the page</li>
+        <li>Click "Set" to set the video time</li>
         <li>Click play</li>
+        <li>You'll see that video.currentTime is stopped and is not 'reactive', but the video plays as usual</li>
     </ol>
 </div>
 
